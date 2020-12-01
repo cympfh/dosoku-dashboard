@@ -1,0 +1,26 @@
+[batch]
+jobs = [
+    "tenki",
+    "anical",
+    "usd",
+    "bun",
+    "taiju",
+]
+
+[job.date]
+command = "./scripts/date"
+
+[job.tenki]
+command = "./scripts/tenki.sh"
+
+[job.anical]
+command = "./scripts/anime.sh"
+
+[job.usd]
+command = "./scripts/usd.sh"
+
+[job.bun]
+command = "./scripts/bun.sh"
+
+[job.taiju]
+command = "./scripts/taiju.sh"

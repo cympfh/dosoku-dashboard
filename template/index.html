@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="cympfh" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <style type="text/css">code{white-space: pre;}</style>
+  <title>dosoku dashboard</title>
+  <style>
+  @font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  }
+  h1,h2,h3,h4,h5 {
+    font-family: 'Josefin Sans';
+  }
+</style>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h2 class="title">dosoku dashboard</h2>
+      <div class="container">
+      {% for name in names %}
+        <div class="box">
+          <h2>{{ name }}</h2>
+          <section class="section job" id="{{ name }}">
+            Loading...
+          </section>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </section>
+  <script>
+    function get(name) {
+      fetch(`http://${location.host}/job/${name}`)
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById(name).innerHTML = result;
+        });
+    }
+    function getAll() {
+        let elems = document.getElementsByClassName('job');
+        for (var e of elems) {
+          get(e.id);
+        }
+    }
+    setTimeout(getAll, 500);
+  </script>
+</body>
+</html>
