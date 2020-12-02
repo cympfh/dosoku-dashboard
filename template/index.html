@@ -29,7 +29,16 @@
       <div class="container">
       {% for name in names %}
         <div class="box">
-          <h2>{{ name }}</h2>
+          <nav class="level">
+            <div class="level-left">
+              <h2 style="font-size: 1.2rem;">{{ name }}</h2>
+            </div>
+            <div class="level-right">
+              <button class="button" onclick="reload(this)" label="{{ name }}">
+                <span class="icon"><i class="fas fa-redo"></i>
+              </span></button>
+            </div>
+          </nav>
           <section class="section job" id="{{ name }}">
             Loading...
           </section>
@@ -51,6 +60,14 @@
         for (var e of elems) {
           get(e.id);
         }
+    }
+    function reload(elem) {
+      var name = elem.attributes.label.value;
+      fetch(`http://${location.host}/job/${name}`, {'method': 'POST'})
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById(name).innerHTML = result;
+        });
     }
     setTimeout(getAll, 500);
   </script>

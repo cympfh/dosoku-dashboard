@@ -5,6 +5,7 @@ jobs = [
     "usd",
     "bun",
     "taiju",
+    "date",
 ]
 
 [job.date]
