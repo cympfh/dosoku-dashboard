@@ -3,4 +3,4 @@
 taiju plot >/dev/null
 mv /tmp/w.png ./static/
 
-echo "<img src=./static/w.png />"
+echo "<img src=./dashboard/static/w.png />"

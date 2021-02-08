@@ -14,6 +14,7 @@ logger = logging.getLogger("uvicorn.dashboard")
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/dashboard/static", StaticFiles(directory="static"), name="static")
 conf = toml.load("./config.toml")
 template = Jinja2Templates("./template/")
 
@@ -48,6 +49,7 @@ class Batch:
 
 
 @app.get("/job/{name}", response_class=PlainTextResponse)
+@app.get("/dashboard/job/{name}", response_class=PlainTextResponse)
 async def get_job(name: str):
     """GET Job using cache
 
@@ -57,12 +59,14 @@ async def get_job(name: str):
 
 
 @app.post("/job/{name}", response_class=PlainTextResponse)
+@app.post("/dashboard/job/{name}", response_class=PlainTextResponse)
 async def get_post(name: str):
     """Re-Run & Get Job using cache"""
     return Batch.post(name)
 
 
 @app.get("/", response_class=HTMLResponse)
+@app.get("/dashboard", response_class=HTMLResponse)
 async def get(request: Request):
     """Index Page"""
     context = {"request": request, "names": conf["batch"]["jobs"]}

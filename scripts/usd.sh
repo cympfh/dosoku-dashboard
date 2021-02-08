@@ -69,4 +69,4 @@ set ylabel 'USD/JPY' tc '#808080'
 plot '$PLOT_DATA_USDJPY' u 1:2 w points ls 1 title 'bid', '' u 1:2 smooth bezier ls 1 notitle, '' u 1:3 w points ls 2 title 'ask', '' u 1:3 ls 2 smooth bezier notitle
 EOM
 
-echo "<img src=./static/usd.png />"
+echo "<img src=./dashboard/static/usd.png />"
