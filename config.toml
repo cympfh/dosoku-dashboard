@@ -3,6 +3,7 @@ jobs = [
     "tenki",
     "usd",
     "usd-short",
+    "usd-long",
     "bun",
     "taiju",
 ]
@@ -21,6 +22,9 @@ command = "./scripts/usd.sh"
 
 [job.usd-short]
 command = "./scripts/usd-short.sh"
+
+[job.usd-long]
+command = "./scripts/usd-long.sh"
 
 [job.bun]
 command = "./scripts/bun.sh"
