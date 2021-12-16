@@ -25,7 +25,7 @@ class Batch:
     """Batch Jobs and its Cache"""
 
     cache = ExpiringDict(
-        max_len=100, max_age_seconds=datetime.timedelta(hours=1).seconds
+        max_len=100, max_age_seconds=datetime.timedelta(minutes=30).seconds
     )
 
     @classmethod

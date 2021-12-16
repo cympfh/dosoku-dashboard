@@ -2,8 +2,8 @@
 
 URL=http://s.cympfh.cc
 
-IM=./static/usd.png
-TAIL=2000
+IM=./static/usd-short.png
+TAIL=500
 
 # UCD -> JST
 date-convert() {
@@ -11,14 +11,6 @@ date-convert() {
         date --date "$dt" "+%Y-%m-%dT%H:%M"
     done
 }
-
-# record
-curl -sL https://www.gaitameonline.com/rateaj/getrate | jq -c '.quotes[] | if .currencyPairCode == "AUDUSD" then . else empty end' > /tmp/aud_usd.json
-curl -sL https://www.gaitameonline.com/rateaj/getrate | jq -c '.quotes[] | if .currencyPairCode == "EURUSD" then . else empty end' > /tmp/eur_usd.json
-curl -sL https://www.gaitameonline.com/rateaj/getrate | jq -c '.quotes[] | if .currencyPairCode == "USDJPY" then . else empty end' > /tmp/usd_jpy.json
-curl -sL -H "X-KEY: ${IK_KEY}" -XPOST "${URL}/aud/usd" --data @/tmp/aud_usd.json >/dev/null
-curl -sL -H "X-KEY: ${IK_KEY}" -XPOST "${URL}/eur/usd" --data @/tmp/eur_usd.json >/dev/null
-curl -sL -H "X-KEY: ${IK_KEY}" -XPOST "${URL}/usd/jpy" --data @/tmp/usd_jpy.json >/dev/null
 
 # data
 DAT_AUDUSD=/tmp/aud_usd.dat
@@ -69,4 +61,5 @@ set ylabel 'USD/JPY' tc '#808080'
 plot '$PLOT_DATA_USDJPY' u 1:2 w points ls 1 title 'bid', '' u 1:2 smooth bezier ls 1 notitle, '' u 1:3 w points ls 2 title 'ask', '' u 1:3 ls 2 smooth bezier notitle
 EOM
 
-echo "<img src=./dashboard/static/usd.png />"
+echo "<img src=./dashboard/static/usd-short.png />"
+

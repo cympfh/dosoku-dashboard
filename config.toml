@@ -1,11 +1,10 @@
 [batch]
 jobs = [
     "tenki",
-    "anical",
     "usd",
+    "usd-short",
     "bun",
     "taiju",
-    "date",
 ]
 
 [job.date]
@@ -19,6 +18,9 @@ command = "./scripts/anime.sh"
 
 [job.usd]
 command = "./scripts/usd.sh"
+
+[job.usd-short]
+command = "./scripts/usd-short.sh"
 
 [job.bun]
 command = "./scripts/bun.sh"
